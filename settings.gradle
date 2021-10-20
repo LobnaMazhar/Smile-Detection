@@ -1,2 +1,3 @@
 rootProject.name = "Smile Detection"
 include ':app'
+include ':smile-detection'
