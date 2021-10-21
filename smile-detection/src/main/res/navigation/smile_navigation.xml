@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/smile_navigation"
+    app:startDestination="@id/detectionFragment">
+
+    <fragment
+        android:id="@+id/detectionFragment"
+        android:name="lobna.smile.detection.ui.DetectionFragment"
+        android:label="fragment_detection"
+        tools:layout="@layout/fragment_detection" />
+</navigation>
