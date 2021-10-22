@@ -3,7 +3,6 @@ package lobna.smile.detection.utils
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import com.google.mlkit.vision.common.InputImage
@@ -11,7 +10,7 @@ import com.google.mlkit.vision.face.FaceDetection
 import com.google.mlkit.vision.face.FaceDetector
 import com.google.mlkit.vision.face.FaceDetectorOptions
 
-class SmileAnalyzer(val context: Context) : ImageAnalysis.Analyzer {
+class SmileAnalyzer(val context: Context, val cameraHelper: CameraHelper) : ImageAnalysis.Analyzer {
 
     private val TAG = SmileAnalyzer::class.simpleName
 
@@ -38,8 +37,10 @@ class SmileAnalyzer(val context: Context) : ImageAnalysis.Analyzer {
             faceDetector.process(InputImage.fromMediaImage(it, image.imageInfo.rotationDegrees))
                 .addOnSuccessListener { results ->
                     results.forEach { it ->
-                        if ((it?.smilingProbability ?: 0f) > 0.5)
-                            Toast.makeText(context, "smile detected", Toast.LENGTH_SHORT).show()
+                        if ((it?.smilingProbability ?: 0f) > 0.5) {
+                            cameraHelper.takePicture(context)
+                            return@addOnSuccessListener
+                        }
                     }
                     image.close()
                 }
