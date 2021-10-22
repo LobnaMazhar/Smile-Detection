@@ -8,6 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import lobna.smile.detection.databinding.FragmentResultBinding
 
+/**
+ * A Simple [Fragment] subclass
+ * Views the resulted image that was captured automatically on smiling
+ * [args] should contain the image to view and its rotation info
+ * */
 class ResultFragment : Fragment() {
 
     lateinit var fragmentResultBinding: FragmentResultBinding

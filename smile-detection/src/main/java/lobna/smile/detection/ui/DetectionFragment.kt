@@ -13,6 +13,12 @@ import lobna.smile.detection.interfaces.CaptureImageInterface
 import lobna.smile.detection.utils.CameraHelper
 import lobna.smile.detection.utils.PermissionUtil
 
+/**
+ * A simple [Fragment] subclass
+ * used to detect User's smile through Camera
+ *
+ * use the [startCamera] method to begin initializing camera to detect user's smile
+ * */
 class DetectionFragment : Fragment() {
 
     private lateinit var fragmentDetectionBinding: FragmentDetectionBinding
@@ -32,6 +38,10 @@ class DetectionFragment : Fragment() {
         return fragmentDetectionBinding.root
     }
 
+    /**
+     * Check if the camera permissions was granted before the proceed with starting the camera
+     * if else, ask for user's permissions to access camera
+     * */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -42,10 +52,20 @@ class DetectionFragment : Fragment() {
         }
     }
 
+    /**
+     * [CameraHelper] class is responsible for initializing camera
+     * it needs a running Context, LifecycleOwner, and PreviewView of the camera
+     * */
     fun startCamera() {
         CameraHelper(captureImageInterface).setupCamera(requireContext(), this, cameraView)
     }
 
+    /**
+     * use [navigateToResult] method to switch to results screen
+     *
+     * @param bitmap is the captured image that will be viewed in result screen
+     * @param rotationDegrees is an integer indicating rotation degrees of the captured image
+     * */
     fun navigateToResult(bitmap: Bitmap, rotationDegrees: Int) {
         findNavController().navigate(
             DetectionFragmentDirections.detectionToResult(bitmap, rotationDegrees)
