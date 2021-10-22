@@ -10,10 +10,13 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
+import java.util.concurrent.Executors
 
 class CameraHelper {
 
     private val TAG = CameraHelper::class.simpleName
+
+    private val cameraExecutor = Executors.newSingleThreadExecutor()
 
     fun setupCamera(context: Context, lifecycleOwner: LifecycleOwner, cameraView: PreviewView) {
         val processCameraProvider = ProcessCameraProvider.getInstance(context)
@@ -23,12 +26,11 @@ class CameraHelper {
                 cameraProvider.unbindAll()
 
                 val selector = getCameraSelector()
-                val analyzer = getImageAnalyzer()
+                val analyzer =
+                    getImageAnalyzer().apply { setAnalyzer(cameraExecutor, SmileAnalyzer(context)) }
                 val preview = getCameraPreview(cameraView)
                 val imageCapture = getImageCapture()
-                val camera = cameraProvider.bindToLifecycle(
-                    lifecycleOwner, selector, preview
-                )
+                cameraProvider.bindToLifecycle(lifecycleOwner, selector, analyzer, preview)
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to bind camera", e)
             }
@@ -40,7 +42,8 @@ class CameraHelper {
     }
 
     private fun getImageAnalyzer(): ImageAnalysis {
-        return ImageAnalysis.Builder().build()
+        return ImageAnalysis.Builder()
+            .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST).build()
     }
 
     private fun getCameraPreview(cameraView: PreviewView): Preview {
