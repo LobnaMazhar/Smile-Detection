@@ -1,3 +1,5 @@
 <resources>
     <string name="permission_not_granted">Permissions not granted, please approve to open camera</string>
+    <string name="smile_to_detect">Look at the camera and smile ;)</string>
+    <string name="nice_smile">Wow! What a nice smile.</string>
 </resources>

@@ -9,4 +9,14 @@
         android:id="@+id/camera_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|bottom"
+        android:paddingBottom="56dp"
+        android:background="#66000000"
+        android:text="@string/smile_to_detect"
+        android:textColor="#fff"
+        android:textSize="18sp" />
 </FrameLayout>

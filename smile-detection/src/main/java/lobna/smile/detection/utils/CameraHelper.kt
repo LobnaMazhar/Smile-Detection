@@ -10,11 +10,12 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
+import lobna.smile.detection.interfaces.CaptureImageInterface
 import java.nio.ByteBuffer
 import java.util.concurrent.Executors
 
 
-class CameraHelper {
+class CameraHelper(val captureImageInterface: CaptureImageInterface) {
 
     private val TAG = CameraHelper::class.simpleName
 
@@ -64,8 +65,10 @@ class CameraHelper {
                 @SuppressLint("UnsafeOptInUsageError")
                 override fun onCaptureSuccess(imageProxy: ImageProxy) {
                     super.onCaptureSuccess(imageProxy)
-                    imageProxyToBitmap(imageProxy)
+                    val bitmap = imageProxyToBitmap(imageProxy)
+                    val rotationDegrees = imageProxy.imageInfo.rotationDegrees
                     imageProxy.close()
+                    bitmap?.let { captureImageInterface.imageCaptured(it, rotationDegrees) }
                 }
 
                 override fun onError(exception: ImageCaptureException) {

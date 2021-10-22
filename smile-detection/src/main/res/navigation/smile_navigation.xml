@@ -9,5 +9,22 @@
         android:id="@+id/detectionFragment"
         android:name="lobna.smile.detection.ui.DetectionFragment"
         android:label="fragment_detection"
-        tools:layout="@layout/fragment_detection" />
+        tools:layout="@layout/fragment_detection">
+        <action
+            android:id="@+id/detectionToResult"
+            app:destination="@id/resultFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="lobna.smile.detection.ui.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result">
+        <argument
+            android:name="smile_image"
+            app:argType="android.graphics.Bitmap" />
+        <argument
+            android:name="rotation_degrees"
+            app:argType="integer" />
+    </fragment>
 </navigation>
