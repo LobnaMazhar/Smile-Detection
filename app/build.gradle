@@ -44,5 +44,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
 //    implementation project(':smile-detection')
-    implementation 'com.github.LobnaMazhar:Smile-Detection:v1.2.0-alpha'
+    implementation 'com.github.LobnaMazhar:Smile-Detection:smile-detection-v2.0'
 }
