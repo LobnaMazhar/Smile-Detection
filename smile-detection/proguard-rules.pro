@@ -23,3 +23,6 @@
 -keepclassmembers class * extends android.app.Activity {
      public void *(android.view.View);
  }
+-keepclassmembers class * extends androidx.fragment.app.Fragment {
+     *;
+ }
