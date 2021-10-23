@@ -21,7 +21,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true // changed to true to enable obfuscation
+            minifyEnabled false // changed to true to enable obfuscation
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -78,7 +78,7 @@ afterEvaluate {
                 // You can then customize attributes of the publication as shown below.
                 groupId = 'lobna.smile.detection'
                 artifactId = 'smile-detection'
-                version = '1.0'
+                version = '1.2'
             }
         }
     }
