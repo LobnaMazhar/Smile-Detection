@@ -23,6 +23,5 @@
 -keepclassmembers class * extends android.app.Activity {
      public void *(android.view.View);
  }
--keepclassmembers class * extends androidx.fragment.app.Fragment {
-     *;
- }
+-keep class * extends androidx.fragment.app.Fragment {}
+-keepnames class * extends android.os.Parcelable

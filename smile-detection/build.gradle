@@ -21,7 +21,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false // changed to true to enable obfuscation
+            minifyEnabled true // changed to true to enable obfuscation
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
