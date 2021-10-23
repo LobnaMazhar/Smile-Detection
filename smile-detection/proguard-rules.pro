@@ -20,4 +20,6 @@
 # hide the original source file name.
 -renamesourcefileattribute SourceFile
 
--keepclassmembers class lobna.smile.detection.ui.SmileActivity {*;}\
+-keepclassmembers class * extends android.app.Activity {
+     public void *(android.view.View);
+ }
