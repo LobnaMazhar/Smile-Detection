@@ -7,7 +7,7 @@ Smile Detection is an android library which uses mobile camera to detect user's 
 # Requirements
 To be able to integrate the library to your code you only have to add the library to build.gradle app level file
       
-      implementation 'com.github.LobnaMazhar:Smile-Detection:1.0'
+      implementation 'com.github.LobnaMazhar:Smile-Detection:smile-detection-v{latest-version}'
 
 and you just start it by calling
 
